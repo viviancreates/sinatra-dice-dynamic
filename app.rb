@@ -52,3 +52,20 @@ get("/dice/5/4") do
 
   erb(:five_four)
 end
+
+# Make routes flexible by including colon 
+# Sinatra creates the variable named params 
+
+get("/dynamic/:alice/6") do
+  @num_dice = params.fetch("alice")
+
+  @rolls = []
+
+  @num_dice.times do
+    die = rand(1..6)
+
+    @rolls.push(die)
+  end
+
+  erb(:flexible)
+end
