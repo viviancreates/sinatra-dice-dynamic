@@ -56,14 +56,15 @@ end
 # Make routes flexible by including colon 
 # Sinatra creates the variable named params 
 
-get("/dynamic/:alice/6") do
-  @num_dice = params.fetch("alice")
+get("/dice/:num_rolls/:num_sides") do
+  
+  @num_rolls = params.fetch("num_rolls").to_i
+  @num_sides = params.fetch("num_sides").to_i
 
   @rolls = []
 
-  @num_dice.times do
-    die = rand(1..6)
-
+  @num_rolls.times do
+    die = rand(1..@num_sides)
     @rolls.push(die)
   end
 
